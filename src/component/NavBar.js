@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = ({ isAuthenticate, onHandleAuthenticate }) => {
   const menuList = [
@@ -16,42 +16,37 @@ const NavBar = ({ isAuthenticate, onHandleAuthenticate }) => {
   ];
   const navigate = useNavigate();
 
-  const showLoginPage = () => {
-    navigate("/login");
-  };
-  const showProductAllPage = () => {
-    navigate("/?q=");
-  };
-
   const handleInputKeyword = (ev) => {
     if (ev.key === "Enter") {
       navigate(`/?q=${ev.target.value}`);
     }
   };
-  const handleLogOut = () => {
-    onHandleAuthenticate(false);
-  };
 
   return (
     <div>
       <div>
-        <div
-          className="loginButton"
-          onClick={() =>
-            isAuthenticate === false ? showLoginPage() : handleLogOut()
-          }
-        >
-          <FontAwesomeIcon icon={faUser} />
-          <div>{isAuthenticate === true ? "로그아웃" : "로그인"}</div>
+        <div className="loginButton">
+          {isAuthenticate ? (
+            <div onClick={() => onHandleAuthenticate(false)}>
+              <FontAwesomeIcon icon={faUser} />
+              <span>로그아웃</span>
+            </div>
+          ) : (
+            <div onClick={() => navigate("/login")}>
+              <FontAwesomeIcon icon={faUser} />
+              <span>로그인</span>
+            </div>
+          )}
         </div>
       </div>
       <div className="navSection">
-        <img
-          onClick={() => showProductAllPage()}
-          width="100px"
-          src="https://logos-world.net/wp-content/uploads/2020/04/HM-Logo.png"
-          alt=""
-        />
+        <Link to="/">
+          <img
+            width="100px"
+            src="https://logos-world.net/wp-content/uploads/2020/04/HM-Logo.png"
+            alt=""
+          />
+        </Link>
       </div>
       <div className="menuArea">
         <ul className="menuList">

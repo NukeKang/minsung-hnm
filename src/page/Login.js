@@ -7,7 +7,7 @@ const Login = ({ onHandleAuthenticate }) => {
   const loginUser = (ev) => {
     ev.preventDefault();
     onHandleAuthenticate(true);
-    navigate("/?q=");
+    navigate("/");
   };
 
   return (

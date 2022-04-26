@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -11,10 +11,6 @@ import PrivateRoute from "./route/PrivateRoute";
 
 function App() {
   const [authenticate, setAuthenticate] = useState(false);
-
-  useEffect(() => {
-    console.log(authenticate);
-  }, [authenticate]);
 
   return (
     <div>
@@ -32,7 +28,6 @@ function App() {
           path="/product/:id"
           element={<PrivateRoute isAuthenticate={authenticate} />}
         />
-        <Route path="/" element={<Navigate to="/?q=" replace />} />
       </Routes>
     </div>
   );

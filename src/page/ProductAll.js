@@ -10,7 +10,7 @@ const ProductAll = () => {
 
   const getProducts = async () => {
     try {
-      const searchQuery = query.get("q");
+      const searchQuery = query.get("q") || "";
       const response =
         await fetch(`https://my-json-server.typicode.com/Ravender91/minsung-hnm/products?q=${searchQuery}`);
       const data = await response.json();

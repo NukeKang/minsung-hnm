@@ -8,7 +8,9 @@ const ProductDetail = () => {
 
   const getProductDetailData = async () => {
     try {
-      const response = await fetch(`https://my-json-server.typicode.com/Ravender91/minsung-hnm/products/${id}`);
+      const response = await fetch(
+        `https://my-json-server.typicode.com/Ravender91/minsung-hnm/products/${id}`
+      );
       const data = await response.json();
 
       setProductData(data);
@@ -30,7 +32,11 @@ const ProductDetail = () => {
         <Col>
           <div className="productDetailTitle">{productData?.title}</div>
           <div>
-            ₩{productData?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+            ₩
+            {productData?.price
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            원
           </div>
           <select>
             <option>--사이즈선택--</option>
